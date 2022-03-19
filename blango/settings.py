@@ -98,9 +98,22 @@ class Dev(Configuration):
         ),
     }
 
+    # Modelo de usuario actualizado
+    AUTH_USER_MODEL = "blango_auth.User"
+
+    # Hash de las contraseñas actualizado a Argon2
+    PASSWORD_HASHERS = [
+      'django.contrib.auth.hashers.Argon2PasswordHasher',
+      'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+      'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+      'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    ]
+
+    #Tiempo para responder al mail de activación
+    ACCOUNT_ACTIVATION_DAYS = 7
+
     # Password validation
     # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-    AUTH_USER_MODEL = "blango_auth.User"
     AUTH_PASSWORD_VALIDATORS = [
         {
             'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -115,7 +128,8 @@ class Dev(Configuration):
             'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
         },
     ]
-
+    # Backend para los emails de registro
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
     # Internationalization
     # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -141,10 +155,11 @@ class Dev(Configuration):
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+    # Cripsy template bootstrap5
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+    # configuradión del log
     LOGGING = {
         "version": 1,
         "disable_existing_loggers": False,
@@ -183,14 +198,6 @@ class Dev(Configuration):
             "level": "DEBUG",
         },
     }
-    
-    PASSWORD_HASHERS = [
-      'django.contrib.auth.hashers.Argon2PasswordHasher',
-      'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-      'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-      'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-    ]
-
 
 class Prod(Dev):
     DEBUG = False
