@@ -224,6 +224,22 @@ class Dev(Configuration):
         "DEFAULT_PERMISSION_CLASSES": [
            "rest_framework.permissions.IsAuthenticatedOrReadOnly"
         ],
+
+        # Acceso API: limite de consultas por clases
+        "DEFAULT_THROTTLE_CLASSES": [
+            "blog.api.throttling.AnonSustainedThrottle",
+            "blog.api.throttling.AnonBurstThrottle",
+            "blog.api.throttling.UserSustainedThrottle",
+            "blog.api.throttling.UserBurstThrottle",
+        ],
+
+        # Acceso API: limite de consultas por ratios
+        "DEFAULT_THROTTLE_RATES": {
+            "anon_sustained": "500/day",
+            "anon_burst": "10/minute",
+            "user_sustained": "5000/day",
+            "user_burst": "100/minute",
+        },
     }
 
     #Customización DRF 
@@ -233,6 +249,7 @@ class Dev(Configuration):
             "Basic": {"type": "basic"},
         }
     }
+
 
 class Prod(Dev):
     DEBUG = False
