@@ -7,6 +7,13 @@
         {% include "blog/post-byline.html" %}
     {% endcol %}
 {% endrow %}
+{% if post.hero_image %}
+    {% row %}
+        {% col %}
+            <img class="img-fluid" src="{{ post.hero_image.url }}">
+        {% endcol %}
+    {% endrow %}
+{% endif %}
 {% row %}
     {% col %}
         {{ post.content|safe }}
@@ -26,6 +33,7 @@
             <p>{{ post.author.profile.bio }}</p>
         {% endcol %}
     {% endrow %}
+
 {% endif %}
 {% include "blog/post-comments.html" %}
 {% endblock %}
