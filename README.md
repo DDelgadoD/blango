@@ -1,4 +1,4 @@
-## Updating everyday! Django Course that I'm actually doing
+## Updating everyday!! Django Course that I'm actually doing
 
 # blango
 
