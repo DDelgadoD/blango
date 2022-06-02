@@ -1,4 +1,4 @@
-## Updating everyday!! Django Course that I'm actually doing
+## No more commits course completed!!
 
 # blango
 
